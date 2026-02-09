@@ -169,6 +169,4 @@ python tests.py
 | Language detection | ~500 ops/sec (cached: ~5,000) |
 | Full pipeline | ~200 comments/sec |
 
-## License
 
-MIT
