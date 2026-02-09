@@ -3,14 +3,14 @@
 🇲🇦 DARIJA DATASET BUILDER — Architecture Multi-Pipeline
 
 Collecte massive de commentaires Darija depuis 5 sources:
-  - YouTube  (~400k) via API Data v3
-  - Hespress (~300k) via scraping web
-  - TikTok   (~250k) via scraping web
-  - Facebook (~150k) via Selenium
-  - Twitter/X (~100k) via API v2
+  - YouTube   via API Data v3
+  - Hespress  via scraping web
+  - TikTok    via scraping web
+  - Facebook  via Selenium
+  - Twitter/X via API v2
 
 Pipeline central: nettoyage → filtrage Darija → déduplication → CSV Hugging Face
-Objectif: ~1 million de commentaires Darija uniques.
+Objectif: des commentaires Darija uniques.
 """
 
 import sys
@@ -38,19 +38,19 @@ def main():
     
     print("  Choisissez un mode:\n")
     print("  ── COLLECTE (scrapers individuels) ──")
-    print("  1. 🎬 YouTube     — Scraper les commentaires YouTube marocains")
-    print("  2. 📰 Hespress    — Scraper les commentaires Hespress")
-    print("  3. 🎵 TikTok      — Scraper les commentaires TikTok marocains")
-    print("  4. 🐦 Twitter/X   — Collecter les tweets Darija")
-    print("  5. 🌐 Facebook    — Scraper Facebook (Selenium)")
+    print("  1.  YouTube     — Scraper les commentaires YouTube marocains")
+    print("  2.  Hespress    — Scraper les commentaires Hespress")
+    print("  3.  TikTok      — Scraper les commentaires TikTok marocains")
+    print("  4.  Twitter/X   — Collecter les tweets Darija")
+    print("  5.  Facebook    — Scraper Facebook (Selenium)")
     print()
     print("  ── TRAITEMENT ──")
-    print("  6. 🔄 FUSION      — Fusionner TOUTES les sources en 1 CSV final")
-    print("  7. 📊 Dashboard   — Voir l'état de la collecte")
+    print("  6.  FUSION      — Fusionner TOUTES les sources en 1 CSV final")
+    print("  7.  Dashboard   — Voir l'état de la collecte")
     print()
     print("  ── QUICK ──")
-    print("  8. 🚀 TOUT LANCER — Collecter TOUTES les sources + fusionner")
-    print("  9. 🤖 Générer     — Dataset synthétique uniquement (hors-ligne)")
+    print("  8.  TOUT LANCER — Collecter TOUTES les sources + fusionner")
+    print("  9.  Générer     — Dataset synthétique uniquement (hors-ligne)")
     print()
     
     choice = input("  Votre choix (1-9) [8]: ").strip() or "8"
