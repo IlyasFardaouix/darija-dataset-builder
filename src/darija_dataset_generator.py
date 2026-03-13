@@ -13,7 +13,6 @@ import random
 import hashlib
 from typing import List, Dict, Generator, Set
 
-
 # ============================================================================
 # COMMENTAIRES DARIJA PAR THÈME (900+ base comments)
 # ============================================================================
@@ -681,42 +680,128 @@ ALL_COMMENTS_GROUPS = [
 ]
 
 DARIJA_EMOJIS = [
-    "🇲🇦", "❤️", "🙏", "😂", "🤣", "👍", "💪", "🔥", "✨",
-    "😊", "🤲", "💚", "❤️‍🔥", "🫶", "👏", "😍", "🥰", "💯",
-    "⚽", "🏆", "🎵", "🫕", "🍵", "📸", "🎉", "🌊", "☀️",
-    "🥺", "💔", "😭", "🤔", "👀", "🫡", "🎊", "🌹", "🤝",
+    "🇲🇦",
+    "❤️",
+    "🙏",
+    "😂",
+    "🤣",
+    "👍",
+    "💪",
+    "🔥",
+    "✨",
+    "😊",
+    "🤲",
+    "💚",
+    "❤️‍🔥",
+    "🫶",
+    "👏",
+    "😍",
+    "🥰",
+    "💯",
+    "⚽",
+    "🏆",
+    "🎵",
+    "🫕",
+    "🍵",
+    "📸",
+    "🎉",
+    "🌊",
+    "☀️",
+    "🥺",
+    "💔",
+    "😭",
+    "🤔",
+    "👀",
+    "🫡",
+    "🎊",
+    "🌹",
+    "🤝",
 ]
 
 REACTIONS = [
-    "والله", "تبارك الله", "ما شاء الله", "سبحان الله",
-    "الله أكبر", "بصح", "واش بصح؟", "لا إله إلا الله",
-    "يا لطيف", "يا ربي", "أمين", "إن شاء الله",
-    "يا حسرة", "يا سلام", "الله الله", "هاكداك",
-    "أيوا", "واخا", "بركا علينا", "يا ودي",
+    "والله",
+    "تبارك الله",
+    "ما شاء الله",
+    "سبحان الله",
+    "الله أكبر",
+    "بصح",
+    "واش بصح؟",
+    "لا إله إلا الله",
+    "يا لطيف",
+    "يا ربي",
+    "أمين",
+    "إن شاء الله",
+    "يا حسرة",
+    "يا سلام",
+    "الله الله",
+    "هاكداك",
+    "أيوا",
+    "واخا",
+    "بركا علينا",
+    "يا ودي",
 ]
 
 PREFIXES = [
-    "والله ", "بصراحة ", "صراحة ", "أنا كنقول ",
-    "بالنسبة ليا ", "على حساب ما كنشوف ", "حقيقة ",
-    "خاصك تعرف بلي ", "ما غاديش نكذب عليك ",
-    "واحد الحاجة مهمة: ", "سمح ليا نقول ليك ",
-    "أنا شخصيا كنظن بلي ", "هادي حقيقة: ",
+    "والله ",
+    "بصراحة ",
+    "صراحة ",
+    "أنا كنقول ",
+    "بالنسبة ليا ",
+    "على حساب ما كنشوف ",
+    "حقيقة ",
+    "خاصك تعرف بلي ",
+    "ما غاديش نكذب عليك ",
+    "واحد الحاجة مهمة: ",
+    "سمح ليا نقول ليك ",
+    "أنا شخصيا كنظن بلي ",
+    "هادي حقيقة: ",
 ]
 
 SUFFIXES = [
-    " 🇲🇦", "", " ❤️", " 🙏", " والله", " إن شاء الله",
-    " الحمد لله", "", " بزاف", "", " خاصنا ندعمو",
-    "", " 💪", "", " ديما مغاربة", "",
-    " وسلام", " باراكا", " أمين يا رب", "",
-    " ونتوما وافقين معايا؟", " واش أنا غالط؟", "",
+    " 🇲🇦",
+    "",
+    " ❤️",
+    " 🙏",
+    " والله",
+    " إن شاء الله",
+    " الحمد لله",
+    "",
+    " بزاف",
+    "",
+    " خاصنا ندعمو",
+    "",
+    " 💪",
+    "",
+    " ديما مغاربة",
+    "",
+    " وسلام",
+    " باراكا",
+    " أمين يا رب",
+    "",
+    " ونتوما وافقين معايا؟",
+    " واش أنا غالط؟",
+    "",
 ]
 
 CONNECTORS = [
-    " و", " بصح ", " ولكن ", " حيت ", " لأن ",
-    " باش ", " منين ", " فاش ", " إلا ", " بحال ",
-    " يعني ", " كيف ما كنقولو ", " بالإضافة ل",
-    " وبالتالي ", " ومن جهة أخرى ", " وفنفس الوقت ",
-    " بلا ما ننساو ", " وما خاصناش ننساو ",
+    " و",
+    " بصح ",
+    " ولكن ",
+    " حيت ",
+    " لأن ",
+    " باش ",
+    " منين ",
+    " فاش ",
+    " إلا ",
+    " بحال ",
+    " يعني ",
+    " كيف ما كنقولو ",
+    " بالإضافة ل",
+    " وبالتالي ",
+    " ومن جهة أخرى ",
+    " وفنفس الوقت ",
+    " بلا ما ننساو ",
+    " وما خاصناش ننساو ",
 ]
 
 WORD_SUBSTITUTIONS = {
@@ -751,7 +836,8 @@ AGREEMENT_PHRASES = [
 
 FAKE_URLS = [
     f"https://www.facebook.com/permalink.php?story_fbid={10000000000 + i}&id={20000000000 + j}"
-    for i in range(200) for j in range(5)
+    for i in range(200)
+    for j in range(5)
 ]
 
 
@@ -830,11 +916,12 @@ def generate_combined_comment() -> str:
 
 def _text_hash(text: str) -> str:
     """Hash rapide pour détecter les doublons."""
-    return hashlib.md5(text.encode('utf-8')).hexdigest()
+    return hashlib.md5(text.encode("utf-8")).hexdigest()
 
 
-def generate_massive_dataset(target_size: int = 10000,
-                              seed: int = 42) -> Generator[Dict[str, str], None, None]:
+def generate_massive_dataset(
+    target_size: int = 10000, seed: int = 42
+) -> Generator[Dict[str, str], None, None]:
     """
     Générateur de dataset massif de commentaires Darija.
     Utilise la déduplication inline par hash MD5.
@@ -870,9 +957,7 @@ def generate_massive_dataset(target_size: int = 10000,
             text = generate_variation(generate_combined_comment())
         else:
             text = generate_variation(
-                generate_variation(
-                    generate_variation(random.choice(base_comments))
-                )
+                generate_variation(generate_variation(random.choice(base_comments)))
             )
 
         text = text.strip()
@@ -889,6 +974,8 @@ def generate_massive_dataset(target_size: int = 10000,
         generated += 1
 
 
-def generate_dataset_list(target_size: int = 10000, seed: int = 42) -> List[Dict[str, str]]:
+def generate_dataset_list(
+    target_size: int = 10000, seed: int = 42
+) -> List[Dict[str, str]]:
     """Génère une liste complète de commentaires Darija."""
     return list(generate_massive_dataset(target_size, seed))

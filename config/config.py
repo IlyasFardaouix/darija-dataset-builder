@@ -28,12 +28,12 @@ FACEBOOK_CONFIG = {
 # Configuration nettoyage des données
 CLEANING_CONFIG = {
     "remove_urls": True,
-    "remove_emojis": True,            # Supprimer TOUS les emojis — dataset propre Darija uniquement
+    "remove_emojis": True,  # Supprimer TOUS les emojis — dataset propre Darija uniquement
     "remove_punctuation": False,
-    "remove_special_chars": True,     # Nettoyer les symboles inutiles
+    "remove_special_chars": True,  # Nettoyer les symboles inutiles
     "remove_html_tags": True,
     "normalize_whitespace": True,
-    "min_comment_length": 5,          # Minimum 5 chars pour éviter le bruit
+    "min_comment_length": 5,  # Minimum 5 chars pour éviter le bruit
     "max_comment_length": 5000,
     "preserve_darija_latin": True,
 }
@@ -43,22 +43,35 @@ LANGUAGE_CONFIG = {
     "model_path": str(MODELS_DIR / "lid.176.ftz"),
     "model_url": "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.ftz",
     "darija_label": "__label__ar",
-    "confidence_threshold": 0.4,      # Seuil relevé pour filtrage strict
+    "confidence_threshold": 0.4,  # Seuil relevé pour filtrage strict
     "batch_size": 5000,
     # Labels acceptés — arabe + dialecte égyptien (proche)
     "accepted_labels": ["__label__ar", "__label__arz"],
     # Activer la détection heuristique par mots-clés Darija
     "use_darija_heuristics": True,
     # Seuil minimum pour l'heuristique (nombre de mots Darija trouvés)
-    "min_darija_words": 2,            # Minimum 2 mots Darija pour valider
+    "min_darija_words": 2,  # Minimum 2 mots Darija pour valider
     # Langues étrangères à rejeter explicitement
-    "rejected_labels": ["__label__en", "__label__fr", "__label__es", "__label__tr", "__label__pl", "__label__de", "__label__it", "__label__pt", "__label__nl", "__label__ru", "__label__id", "__label__ms"],
+    "rejected_labels": [
+        "__label__en",
+        "__label__fr",
+        "__label__es",
+        "__label__tr",
+        "__label__pl",
+        "__label__de",
+        "__label__it",
+        "__label__pt",
+        "__label__nl",
+        "__label__ru",
+        "__label__id",
+        "__label__ms",
+    ],
 }
 
 # Configuration CSV
 CSV_CONFIG = {
     "output_file": str(DATA_DIR / "darija_comments.csv"),
-    "encoding": "utf-8-sig",       # BOM pour compatibilité Excel/Windows avec l'arabe
+    "encoding": "utf-8-sig",  # BOM pour compatibilité Excel/Windows avec l'arabe
     "columns": ["text", "url"],
     "index": False,
 }
@@ -86,12 +99,12 @@ WEBDRIVER_CONFIG = {
 
 # Configuration scraping étendue — pour dataset énorme
 SCRAPING_CONFIG = {
-    "scroll_times": 80,               # Scrolls max par page pour charger tous les commentaires
-    "click_see_more": True,           # Cliquer sur "Voir plus de commentaires"
-    "click_replies": True,            # Charger les réponses aux commentaires aussi
-    "max_retries_per_post": 5,        # Tentatives max par publication
-    "delay_between_posts": 2,         # Délai entre les publications (anti-ban)
-    "delay_between_scrolls": 1.5,     # Délai entre scrolls
-    "extract_replies": True,          # Extraire les sous-commentaires
-    "max_comments_per_post": 0,       # 0 = illimité
+    "scroll_times": 80,  # Scrolls max par page pour charger tous les commentaires
+    "click_see_more": True,  # Cliquer sur "Voir plus de commentaires"
+    "click_replies": True,  # Charger les réponses aux commentaires aussi
+    "max_retries_per_post": 5,  # Tentatives max par publication
+    "delay_between_posts": 2,  # Délai entre les publications (anti-ban)
+    "delay_between_scrolls": 1.5,  # Délai entre scrolls
+    "extract_replies": True,  # Extraire les sous-commentaires
+    "max_comments_per_post": 0,  # 0 = illimité
 }

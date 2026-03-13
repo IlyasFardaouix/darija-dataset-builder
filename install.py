@@ -19,12 +19,11 @@ def check_python_version():
 def install_dependencies():
     """Installe les dépendances."""
     print("\n📦 Installation des dépendances...")
-    
+
     try:
-        subprocess.check_call([
-            sys.executable, "-m", "pip", "install", 
-            "-r", "requirements.txt", "-q"
-        ])
+        subprocess.check_call(
+            [sys.executable, "-m", "pip", "install", "-r", "requirements.txt", "-q"]
+        )
         print("✓ Dépendances installées")
     except subprocess.CalledProcessError:
         print("❌ Erreur lors de l'installation des dépendances")
@@ -34,7 +33,7 @@ def install_dependencies():
 def create_directories():
     """Crée les répertoires nécessaires."""
     print("\n📁 Création des répertoires...")
-    
+
     dirs = ["data", "models", "logs", "config"]
     for dir_name in dirs:
         Path(dir_name).mkdir(exist_ok=True)
@@ -44,26 +43,32 @@ def create_directories():
 def download_fasttext_model():
     """Télécharge le modèle FastText."""
     print("\n🧠 Configuration du modèle FastText...")
-    print("  (Le modèle (176 MB) sera téléchargé automatiquement à la première utilisation)")
+    print(
+        "  (Le modèle (176 MB) sera téléchargé automatiquement à la première utilisation)"
+    )
 
 
 def verify_installation():
     """Vérifie l'installation."""
     print("\n✅ Vérification de l'installation...")
-    
+
     try:
         import selenium
+
         print("  ✓ Selenium")
-        
+
         import fasttext
+
         print("  ✓ FastText")
-        
+
         import pandas
+
         print("  ✓ Pandas")
-        
+
         import numpy
+
         print("  ✓ NumPy")
-        
+
         print("\n✅ Installation réussie!")
         return True
     except ImportError as e:
@@ -73,22 +78,22 @@ def verify_installation():
 
 def main():
     """Exécute l'installation complète."""
-    print("\n" + "="*60)
-    print(" "*10 + "DARIJA DATASET BUILDER - Installation")
-    print("="*60)
-    
+    print("\n" + "=" * 60)
+    print(" " * 10 + "DARIJA DATASET BUILDER - Installation")
+    print("=" * 60)
+
     check_python_version()
     create_directories()
     install_dependencies()
     download_fasttext_model()
-    
+
     if verify_installation():
-        print("\n" + "="*60)
+        print("\n" + "=" * 60)
         print("🎉 Prêt à utiliser! Exécutez:")
         print("\n  python main.py")
         print("  ou")
         print("  python examples.py")
-        print("\n" + "="*60 + "\n")
+        print("\n" + "=" * 60 + "\n")
     else:
         print("\n❌ L'installation n'a pas pu être vérifiée")
         sys.exit(1)
