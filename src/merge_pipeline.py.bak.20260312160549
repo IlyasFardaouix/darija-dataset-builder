@@ -1,4 +1,3 @@
-```python
 # -*- coding: utf-8 -*-
 """
 Pipeline Central de Fusion — Fusionne TOUTES les sources en un seul dataset Darija.
@@ -33,12 +32,11 @@ from src.logger import setup_logger
 
 logger = setup_logger(__name__)
 
-# Répertoire de données brutes
 RAW_DATA_DIR = DATA_DIR / "raw"
 RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 # Mapping source → fichier JSONL brut
-SOURCE_FILES: Dict[str, Path] = {
+SOURCE_FILES = {
     "youtube":   RAW_DATA_DIR / "youtube_comments.jsonl",
     "hespress":  RAW_DATA_DIR / "hespress_comments.jsonl",
     "tiktok":    RAW_DATA_DIR / "tiktok_comments.jsonl",
@@ -61,11 +59,6 @@ class MergePipeline:
     """
     
     def __init__(self):
-        """
-        Initialisation du pipeline.
-        
-        Crée les objets nécessaires pour le nettoyage et la détection de la langue.
-        """
         self.cleaner = DataCleaner()
         self.language_detector = LanguageDetector()
         self.stats = {
@@ -79,28 +72,12 @@ class MergePipeline:
     
     @staticmethod
     def _text_hash(text: str) -> str:
-        """
-        Hash MD5 pour déduplication rapide.
-        
-        Args:
-            text (str): Texte à hasher
-        
-        Returns:
-            str: Hash MD5 du texte
-        """
+        """Hash MD5 pour déduplication rapide."""
         normalized = text.strip().lower()
         return hashlib.md5(normalized.encode('utf-8')).hexdigest()
     
     def _read_jsonl(self, filepath: Path) -> Generator[Dict, None, None]:
-        """
-        Lit un fichier JSONL ligne par ligne.
-        
-        Args:
-            filepath (Path): Chemin du fichier JSONL
-        
-        Yields:
-            Dict: Dictionnaire représentant une ligne du fichier JSONL
-        """
+        """Lit un fichier JSONL ligne par ligne."""
         if not filepath.exists():
             return
         with open(filepath, 'r', encoding='utf-8') as f:
@@ -113,15 +90,7 @@ class MergePipeline:
                         continue
     
     def _count_jsonl(self, filepath: Path) -> int:
-        """
-        Compte les lignes d'un fichier JSONL.
-        
-        Args:
-            filepath (Path): Chemin du fichier JSONL
-        
-        Returns:
-            int: Nombre de lignes dans le fichier JSONL
-        """
+        """Compte les lignes d'un fichier JSONL."""
         if not filepath.exists():
             return 0
         count = 0
@@ -131,12 +100,7 @@ class MergePipeline:
         return count
     
     def get_source_counts(self) -> Dict[str, int]:
-        """
-        Retourne le nombre de commentaires bruts par source.
-        
-        Returns:
-            Dict[str, int]: Dictionnaire avec les sources comme clés et les comptes comme valeurs
-        """
+        """Retourne le nombre de commentaires bruts par source."""
         counts = {}
         for source, filepath in SOURCE_FILES.items():
             counts[source] = self._count_jsonl(filepath)
@@ -148,11 +112,11 @@ class MergePipeline:
         nettoyage → validation → détection Darija → déduplication.
         
         Args:
-            source_name (str): Nom de la source (youtube, hespress, etc.)
-            filepath (Path): Chemin du fichier JSONL brut
-        
+            source_name: Nom de la source (youtube, hespress, etc.)
+            filepath: Chemin du fichier JSONL brut
+            
         Yields:
-            Dict: Dictionnaire représentant un commentaire traité
+            Dict {"text": ..., "url": ..., "source": ...}
         """
         source_raw = 0
         source_darija = 0
@@ -211,12 +175,12 @@ class MergePipeline:
         Fusionne TOUTES les sources en un seul CSV final.
         
         Args:
-            include_generated (bool): Inclure les commentaires du générateur synthétique
-            generated_size (int): Taille du dataset généré (si include_generated)
-            output_file (str): Chemin du CSV final (défaut: data/darija_dataset_merged.csv)
-        
+            include_generated: Inclure les commentaires du générateur synthétique
+            generated_size: Taille du dataset généré (si include_generated)
+            output_file: Chemin du CSV final (défaut: data/darija_dataset_merged.csv)
+            
         Returns:
-            str: Chemin du fichier CSV final
+            Chemin du fichier CSV final
         """
         output_file = Path(output_file or MERGED_CSV)
         start_time = time.time()
@@ -328,9 +292,7 @@ class MergePipeline:
         return str(output_file)
     
     def print_dashboard(self):
-        """
-        Affiche un tableau de bord complet des données collectées.
-        """
+        """Affiche un tableau de bord complet des données collectées."""
         source_counts = self.get_source_counts()
         
         print(f"\n{'='*70}")
@@ -364,4 +326,3 @@ class MergePipeline:
             print(f"  ⬜ CSV fusionné     │ pas encore │ Lancez la fusion!")
         
         print(f"{'='*70}\n")
-```

@@ -1,4 +1,3 @@
-```python
 """
 Module d'optimisation et cache pour améliorer les performances.
 """
@@ -19,49 +18,38 @@ class CacheManager:
         Args:
             max_size: Taille maximale du cache
         """
-        # Dictionnaire pour stocker les valeurs en cache
         self.cache: Dict[str, Any] = {}
         self.max_size = max_size
-        # File d'attente pour suivre l'ordre d'accès
         self.access_order = deque(maxlen=max_size)
-        # Compteurs pour les accès au cache
         self.hits = 0
         self.misses = 0
     
     def _hash_key(self, text: str) -> str:
         """Génère une clé de hash pour un texte."""
-        # Utilisation de MD5 pour générer la clé de hash
         return hashlib.md5(text.encode()).hexdigest()
     
     def get(self, key: str) -> Any:
         """Récupère une valeur du cache."""
         if key in self.cache:
-            # Incrémentation du compteur de succès
             self.hits += 1
-            # Mise à jour de l'ordre d'accès
             self.access_order.append(key)
             return self.cache[key]
-        # Incrémentation du compteur d'échecs
         self.misses += 1
         return None
     
     def set(self, key: str, value: Any):
         """Définit une valeur dans le cache."""
-        # Vérification de la taille maximale du cache
         if len(self.cache) >= self.max_size:
-            # Suppression des éléments les moins utilisés (FIFO simple)
+            # Supprimer les éléments les moins utilisés (FIFO simple)
             oldest = self.access_order[0] if self.access_order else None
             if oldest and oldest in self.cache:
                 del self.cache[oldest]
         
-        # Ajout de la valeur au cache
         self.cache[key] = value
-        # Mise à jour de l'ordre d'accès
         self.access_order.append(key)
     
     def clear(self):
         """Vide le cache."""
-        # Réinitialisation du cache et des compteurs
         self.cache.clear()
         self.access_order.clear()
         self.hits = 0
@@ -69,7 +57,6 @@ class CacheManager:
     
     def get_stats(self) -> Dict[str, Any]:
         """Retourne les statistiques du cache."""
-        # Calcul du taux de succès
         total = self.hits + self.misses
         hit_rate = (self.hits / total * 100) if total > 0 else 0
         return {
@@ -85,7 +72,6 @@ class PerformanceMonitor:
     
     def __init__(self):
         """Initialise le moniteur."""
-        # Dictionnaire pour stocker les temps d'exécution
         self.timings: Dict[str, list] = {}
     
     def time_operation(self, operation_name: str):
@@ -93,12 +79,10 @@ class PerformanceMonitor:
         def decorator(func: Callable) -> Callable:
             @wraps(func)
             def wrapper(*args, **kwargs):
-                # Mesure du temps d'exécution
                 start = time.time()
                 result = func(*args, **kwargs)
                 elapsed = time.time() - start
                 
-                # Stockage du temps d'exécution
                 if operation_name not in self.timings:
                     self.timings[operation_name] = []
                 self.timings[operation_name].append(elapsed)
@@ -112,7 +96,6 @@ class PerformanceMonitor:
         stats = {}
         for op_name, timings in self.timings.items():
             if timings:
-                # Calcul des statistiques pour chaque opération
                 stats[op_name] = {
                     "count": len(timings),
                     "total_time": sum(timings),
@@ -158,7 +141,6 @@ class OptimizedBatchProcessor:
         Yields:
             Chunks de la taille spécifiée
         """
-        # Division de la liste en chunks
         for i in range(0, len(items), chunk_size):
             yield items[i:i + chunk_size]
     
@@ -176,7 +158,6 @@ class OptimizedBatchProcessor:
         Returns:
             Liste des résultats
         """
-        # Traitement des éléments par lots
         results = []
         for chunk in OptimizedBatchProcessor.process_in_chunks(items, batch_size):
             results.extend(processor_func(chunk))
@@ -186,4 +167,3 @@ class OptimizedBatchProcessor:
 # Instances globales
 cache_manager = CacheManager()
 performance_monitor = PerformanceMonitor()
-```

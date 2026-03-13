@@ -1,8 +1,10 @@
 # Darija Dataset Builder
-==========================
+=====================================
+
+A multi-source pipeline for building large-scale **Darija (Moroccan Arabic)** NLP datasets. Collects, cleans, and validates comments from 5 platforms, producing a high-quality dataset ready for machine learning.
 
 ## Overview
-------------
+-----------
 
 The Darija Dataset Builder is a comprehensive tool for creating a large-scale Darija dataset. It collects comments from various sources, cleans and validates the data, and produces a high-quality dataset for machine learning.
 
@@ -17,7 +19,7 @@ The Darija Dataset Builder is a comprehensive tool for creating a large-scale Da
 *   **Performance optimizations**: FastText caching, batch processing, pre-compiled regex
 
 ## Architecture
--------------
+------------
 
 The project is organized into the following directories:
 
@@ -171,5 +173,3 @@ Run the unit tests using: `python tests.py`
 | Text cleaning | ~1,000 ops/sec |
 | Language detection | ~500 ops/sec (cached: ~5,000) |
 | Full pipeline | ~200 comments/sec |
-
-Note: The performance metrics are subject to change based on the system configuration and the number of comments being processed.

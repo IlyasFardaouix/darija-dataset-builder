@@ -1,13 +1,8 @@
-```python
-# Import configuration constants from the config module
 from .config import (
-    # Project directories
     PROJECT_ROOT,
     DATA_DIR,
     MODELS_DIR,
     LOGS_DIR,
-    
-    # Configuration dictionaries
     FACEBOOK_CONFIG,
     CLEANING_CONFIG,
     LANGUAGE_CONFIG,
@@ -18,15 +13,11 @@ from .config import (
     SCRAPING_CONFIG,
 )
 
-# Define the public API of this module
 __all__ = [
-    # Project directories
     "PROJECT_ROOT",
     "DATA_DIR",
     "MODELS_DIR",
     "LOGS_DIR",
-    
-    # Configuration dictionaries
     "FACEBOOK_CONFIG",
     "CLEANING_CONFIG",
     "LANGUAGE_CONFIG",
@@ -36,4 +27,3 @@ __all__ = [
     "WEBDRIVER_CONFIG",
     "SCRAPING_CONFIG",
 ]
-```

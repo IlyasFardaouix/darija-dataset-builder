@@ -1,4 +1,3 @@
-```python
 """
 Configuration avancée et profils de performance.
 """
@@ -17,19 +16,7 @@ class DatasetSize(Enum):
 
 @dataclass
 class PerformanceProfile:
-    """
-    Profil de performance optimisé.
-    
-    Attributes:
-        name (str): Nom du profil
-        batch_size (int): Taille du batch
-        cache_size (int): Taille du cache
-        max_workers (int): Nombre maximum de workers
-        chunk_size (int): Taille des chunks
-        fasttext_batch (int): Taille du batch pour FastText
-        memory_efficient (bool): Indique si le profil est optimisé pour la mémoire
-        use_gpu (bool): Indique si le profil utilise le GPU
-    """
+    """Profil de performance optimisé."""
     
     name: str
     batch_size: int
@@ -40,8 +27,7 @@ class PerformanceProfile:
     memory_efficient: bool
     use_gpu: bool
     
-    def __str__(self) -> str:
-        """Retourne une représentation sous forme de chaîne du profil."""
+    def __str__(self):
         return f"""
 Performance Profile: {self.name}
   - Batch Size: {self.batch_size}
@@ -55,7 +41,7 @@ Performance Profile: {self.name}
 
 
 # Profils prédéfinis
-PROFILES: Dict[DatasetSize, PerformanceProfile] = {
+PROFILES = {
     DatasetSize.SMALL: PerformanceProfile(
         name="Small Dataset (< 1000 records)",
         batch_size=50,
@@ -101,19 +87,19 @@ PROFILES: Dict[DatasetSize, PerformanceProfile] = {
 
 def get_profile(size: DatasetSize) -> PerformanceProfile:
     """
-    Retourne un profil de performance en fonction de la taille du dataset.
+    Retourne un profil de performance.
     
     Args:
-        size (DatasetSize): Taille du dataset
-    
+        size: Taille du dataset
+        
     Returns:
-        PerformanceProfile: Profil de performance correspondant à la taille du dataset
+        Profil de performance
     """
     return PROFILES.get(size, PROFILES[DatasetSize.MEDIUM])
 
 
 # Configuration avancée
-ADVANCED_CONFIG: Dict[str, object] = {
+ADVANCED_CONFIG = {
     "enable_caching": True,
     "enable_compression": True,
     "enable_deduplication": True,
@@ -153,28 +139,25 @@ ADVANCED_CONFIG: Dict[str, object] = {
 }
 
 
-def apply_profile(profile: PerformanceProfile) -> Dict[str, object]:
+def apply_profile(profile: PerformanceProfile) -> Dict:
     """
-    Applique un profil de performance à la configuration avancée.
+    Applique un profil à la configuration.
     
     Args:
-        profile (PerformanceProfile): Profil de performance à appliquer
-    
+        profile: Profil de performance
+        
     Returns:
-        Dict[str, object]: Configuration avancée mise à jour
+        Configuration mise à jour
     """
     config = ADVANCED_CONFIG.copy()
     
-    # Mettre à jour les paramètres de performance
     config["max_batch_size"] = profile.batch_size
     config["max_cache_entries"] = profile.cache_size
     config["max_workers"] = profile.max_workers
     config["use_gpu_fasttext"] = profile.use_gpu
     
-    # Optimiser la mémoire si nécessaire
     if profile.memory_efficient:
         config["max_batch_size"] = min(500, profile.batch_size)
         config["use_memory_mapping"] = True
     
     return config
-```

@@ -1,4 +1,3 @@
-```python
 # -*- coding: utf-8 -*-
 """
 Twitter/X Scraper — Collecteur de commentaires Darija depuis Twitter/X.
@@ -83,12 +82,6 @@ class TwitterScraper:
     """
     
     def __init__(self, bearer_token: str = None):
-        """
-        Initialise le scrapeur Twitter.
-        
-        Args:
-            bearer_token (str): Token d'accès à l'API Twitter (par défaut: TWITTER_BEARER_TOKEN)
-        """
         self.bearer_token = bearer_token or BEARER_TOKEN
         if not self.bearer_token:
             raise ValueError(
@@ -105,7 +98,7 @@ class TwitterScraper:
         self.monthly_count = 0  # Compteur mensuel (max 1500)
         self._load_progress()
     
-    def _load_progress(self) -> None:
+    def _load_progress(self):
         """Charge la progression précédente."""
         if TWITTER_PROGRESS_FILE.exists():
             try:
@@ -121,7 +114,7 @@ class TwitterScraper:
             except Exception:
                 pass
     
-    def _save_progress(self) -> None:
+    def _save_progress(self):
         """Sauvegarde la progression."""
         progress = {
             "seen_ids": list(self.seen_ids)[-5000:],
@@ -136,8 +129,8 @@ class TwitterScraper:
         Recherche des tweets récents via l'API v2.
         
         Args:
-            query (str): Requête de recherche Twitter
-            max_results (int): Résultats par page (max 100 Free tier)
+            query: Requête de recherche Twitter
+            max_results: Résultats par page (max 100 Free tier)
             
         Yields:
             Dict {"text": ..., "url": ..., "source": "twitter"}
@@ -303,4 +296,3 @@ class TwitterScraper:
             for _ in f:
                 count += 1
         return count
-```
