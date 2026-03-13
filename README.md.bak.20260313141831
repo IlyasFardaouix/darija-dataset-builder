@@ -8,13 +8,13 @@ The Darija Dataset Builder is a comprehensive tool for creating a large-scale Da
 
 ### Key Features
 
-*   **Scrapers**: YouTube (API v3), Hespress (web), TikTok (web), Twitter/X (API v2), Facebook (Selenium)
-*   **Language Detection**: FastText + Darija-specific word bank (200+ words, Arabic + Latin script)
-*   **Data Cleaning**: HTML removal, emoji stripping, Unicode normalization, foreign language rejection
-*   **Latin Darija Support**: Preserves Darija written in Latin script with number phonetics (3=ع, 7=ح, 9=ق)
-*   **Synthetic Generator**: 564 base comments across 18 themes with 7 variation strategies
-*   **Central Merge Pipeline**: Fuses all sources with deduplication and quality filtering
-*   **Performance Optimizations**: FastText caching, batch processing, pre-compiled regex
+*   **5 scrapers**: YouTube (API v3), Hespress (web), TikTok (web), Twitter/X (API v2), Facebook (Selenium)
+*   **Language detection**: FastText + Darija-specific word bank (200+ words, Arabic + Latin script)
+*   **Data cleaning**: HTML removal, emoji stripping, Unicode normalization, foreign language rejection
+*   **Latin Darija support**: Preserves Darija written in Latin script with number phonetics (3=ع, 7=ح, 9=ق)
+*   **Synthetic generator**: 564 base comments across 18 themes with 7 variation strategies
+*   **Central merge pipeline**: Fuses all sources with deduplication and quality filtering
+*   **Performance optimizations**: FastText caching, batch processing, pre-compiled regex
 
 ## Architecture
 -------------
@@ -173,28 +173,3 @@ Run the unit tests using: `python tests.py`
 | Full pipeline | ~200 comments/sec |
 
 Note: The performance metrics are subject to change based on the system configuration and the number of comments being processed.
-
-### Performance Optimizations
-
-The project includes several performance optimizations:
-
-*   **FastText caching**: Stores the language identification model in memory for faster lookup.
-*   **Batch processing**: Processes comments in batches to reduce overhead and improve throughput.
-*   **Pre-compiled regex**: Compiles regular expressions beforehand to reduce execution time.
-
-### Advanced Optimizations
-
-The project also includes advanced optimizations for large-scale processing:
-
-*   **Parallel processing**: Utilizes multiple CPU cores to process comments concurrently.
-*   **Memory optimization**: Optimizes memory usage to reduce the risk of out-of-memory errors.
-
-### Performance Monitoring
-
-The project includes a performance monitoring system to track key metrics:
-
-*   **Comment processing speed**: Measures the speed at which comments are processed.
-*   **Memory usage**: Tracks memory usage to detect potential issues.
-*   **CPU usage**: Monitors CPU usage to ensure efficient processing.
-
-By leveraging these performance optimizations and monitoring tools, the Darija Dataset Builder can efficiently process large volumes of comments and produce high-quality datasets for machine learning applications.
